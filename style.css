@@ -1,0 +1,9 @@
+
+.questions {
+    display:flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.questions__answers {
+    border-style: solid;
+}

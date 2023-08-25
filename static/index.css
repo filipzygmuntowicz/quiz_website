@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+input[type=text]{
+    font-size: 3rem;
+}
+.forecast {
+    border-style: solid;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+

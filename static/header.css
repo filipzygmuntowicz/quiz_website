@@ -1,0 +1,38 @@
+header{
+    color:white;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: black;
+    max-width: 64rem;
+    padding: 0 1rem;
+    box-shadow: 0 0 0 100vmax black;
+    clip-path: inset(0 -100vmax);
+    z-index: 999;
+    margin: 0 auto;
+}
+
+.header__nav ul{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding-left: 35%;
+}
+
+.nav__link{
+    padding: 2rem 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    
+}
+.logged-as {
+    color:antiquewhite;
+    padding-left:6rem;
+}
+.logout {
+    cursor: pointer;
+}

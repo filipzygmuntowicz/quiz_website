@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+<title>Login Form</title>
+</head>
+<body>
+    {% include "header.html" %}
+  <div class="container">
+    <div class="login-form">
+      <h1>Login</h1>
+      <div class="input-container">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" required>
+      </div>
+      <div class="input-container">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button onclick="login()">Login</button>
+      <p class="signup-link">Don't have an account? <a href="/register">Sign up</a></p>
+    </div>
+  </div>
+<script>
+  async function login() {
+    const email = document.getElementById("email").value
+    const password = document.getElementById("password").value
+    if ( !email || !password )  {
+      alert("One or more fields are empty!")
+    }
+    else {
+      app_url = window.location.href.split('/')[2]
+      api_url =  "http://" + app_url + "/api/login"
+      console.log(api_url)
+      const response = await fetch(api_url, {
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          password
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+          }
+        });
+
+      const response_json = await response.json()
+      if (response.status >= 400 && response.status <= 417) {
+        alert(response_json["error"])
+      }
+      else {
+        localStorage.setItem("token", response_json["token"]);
+        localStorage.setItem("username", response_json["username"]);
+        window.location.replace("http://" + app_url + "/")
+      }
+    }
+  }
+</script>
+</body>
+</html>

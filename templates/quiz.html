@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
+  <title>Quiz Website</title>
+</head>
+<body>
+  {% include "header.html" %}
+  <a href="{{ url_for('scores')}}">
+    <button class="score-table">Tabela wyników</button>
+  </a>
+  <div class="score-container">
+      <p class="score">Score: 0</p>
+  </div>
+  <div class="quiz-container">
+      <div class="question"></div>
+      <div class="answers">
+        <label class="answer"><input type="radio" name="q" value=""></label>
+        <label class="answer"><input type="radio" name="q" value=""></label>
+        <label class="answer"><input type="radio" name="q" value=""></label>
+        <label class="answer"><input type="radio" name="q" value=""></label>
+      </div>
+    <div class="button-container">
+      <button onclick="getQuestion()" class="button">Submit Answers</button>
+    </div>
+  </div>
+  <p class="no-questions-left">You have answered all of the questions!</p>
+<script>
+const app_url = window.location.href.split('/')[2]
+  const api_url =  "http://" + app_url + "/api/quiz"
+  window.onload = ( async () => {
+    const response = await fetch(api_url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+    const response_get_json = await response.json()
+    score = document.getElementsByClassName("score")[0]
+    score.innerText = `Score: ${response_get_json.score}`
+    console.log(score)
+    if (response_get_json["error"] == "No questions left.") {
+      container = document.getElementsByClassName("quiz-container")[0]
+      container.remove()
+      document.getElementsByClassName("no-questions-left")[0].style.display = 'block';
+    }
+    else if (response.status == 200) {
+      question = document.getElementsByClassName("question")[0]
+      answers = [...document.getElementsByClassName("answer")]
+      const jsonQuestion = response_get_json.question
+      answers.forEach((answer,index) => {
+        answer.innerHTML = `<input type="radio" name="q" value="${jsonQuestion.options[index]}">${jsonQuestion.options[index]}`
+      })
+      question.innerHTML = ""
+      text = document.createTextNode(jsonQuestion.question);
+      question.appendChild(text);
+    }
+    else {
+      alert(response_get_json["error"])
+    }})
+    async function getQuestion() {
+      if (localStorage.getItem("token")) {
+        optionChosen = document.querySelector('input[name="q"]:checked')
+        if (optionChosen != null) {
+          const response_post = await fetch(api_url, {
+            method: "POST",
+            body: JSON.stringify({
+              chosen: optionChosen.value
+              }),
+            headers: {
+              "Authorization": `Bearer ${localStorage.getItem("token")}`,
+              "Content-type": "application/json; charset=UTF-8"
+            }
+          });
+          const response_post_json = await response_post.json()
+          if (response_post.status != 200) {
+            alert(response_post_json["error"])
+          }
+          const response_get = await fetch(api_url, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+              }
+            });
+          const response_get_json = await response_get.json()
+          score = document.getElementsByClassName("score")[0]
+          score.innerText = `Score: ${response_get_json.score}`
+          if (response_get_json["error"] == "No questions left.") {
+            container = document.getElementsByClassName("quiz-container")[0]
+            container.remove()
+            document.getElementsByClassName("no-questions-left")[0].style.display = 'block';
+          }
+          else if (response_get.status == 200) {
+            question = document.getElementsByClassName("question")[0]
+            answers = [...document.getElementsByClassName("answer")]
+            const jsonQuestion = response_get_json.question
+            answers.forEach((answer,index) => {
+              answer.innerHTML = `<input type="radio" name="q" value="${jsonQuestion.options[index]}">${jsonQuestion.options[index]}`
+            })
+            question.innerHTML = ""
+            text = document.createTextNode(jsonQuestion.question);
+            question.appendChild(text);
+          }
+          else {
+            alert(response_get_json["error"])
+          }
+        }
+        else {
+          alert("You need to select one of the qestions.")
+        }
+      }
+      else {
+        alert("You need to log in first.")
+      }
+    }
+</script>
+</body>
+</html>

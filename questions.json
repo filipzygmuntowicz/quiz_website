@@ -1,0 +1,213 @@
+[
+    {
+      "question": "Co to jest widzenie komputerowe?",
+      "options": [
+        "Proces analizy i interpretacji obrazów i wideo przez komputery",
+        "Umiejętność komputerów do generowania obrazów artystycznych",
+        "Technika kompresji danych wideo",
+        "Metoda kodowania dźwięku na obrazie"
+      ],
+      "correct_option": 0
+    },
+    {
+      "question": "Które z poniższych zadań może być realizowane przy użyciu widzenia komputerowego?",
+      "options": [
+        "Rozpoznawanie mowy",
+        "Naprawianie uszkodzonych dysków twardych",
+        "Klasyfikacja gatunków roślin na podstawie zdjęć liści",
+        "Tworzenie baz danych w arkuszach kalkulacyjnych"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Czym jest segmentacja obrazu w kontekście widzenia komputerowego?",
+      "options": [
+        "Procesem odbudowy obrazu z pikseli",
+        "Techniką zwiększania jasności obrazu",
+        "Podziałem obrazu na kluczowe obszary",
+        "Kompresją danych obrazowych"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Który typ sieci neuronowych jest często wykorzystywany w problemach widzenia komputerowego, włączając w to klasyfikację obrazów?",
+      "options": [
+        "Rekurencyjne sieci neuronowe",
+        "Konwolucyjne sieci neuronowe",
+        "Sieci Kohonena",
+        "Sieci wielowarstwowe bez wstecznej propagacji błędu"
+      ],
+      "correct_option": 1
+    },
+    {
+      "question": "Czym jest detekcja obiektów w widzeniu komputerowym?",
+      "options": [
+        "Procesem przekształcania obiektów na dźwięki",
+        "Analizą składu chemicznego obiektów",
+        "Identyfikacją i lokalizacją obiektów na obrazie lub wideo",
+        "Tworzeniem trójwymiarowych modeli obiektów"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Do czego służy algorytm Canny'ego w widzeniu komputerowym?",
+      "options": [
+        "Do wykrywania krawędzi w obrazach",
+        "Do rozpoznawania twarzy",
+        "Do generowania tekstur obrazów",
+        "Do kompresji danych wideo"
+      ],
+      "correct_option": 0
+    },
+    {
+      "question": "Czym różni się klasyfikacja od detekcji obiektów w widzeniu komputerowym?",
+      "options": [
+        "Klasyfikacja polega na analizie ruchu obiektów, a detekcja na analizie kształtów",
+        "Klasyfikacja polega na identyfikacji obiektów, a detekcja na lokalizacji ich na obrazie",
+        "Klasyfikacja to analiza obiektów statycznych, a detekcja dynamicznych",
+        "Klasyfikacja to przetwarzanie obrazów kolorowych, a detekcja czarno-białych"
+      ],
+      "correct_option": 1
+    },
+    {
+      "question": "Co to jest CNN w kontekście widzenia komputerowego?",
+      "options": [
+        "Skomplikowany Algorytm Numeryczny",
+        "Sieć Neuronowa z Wielowarstwowymi Połączeniami",
+        "Konwolucyjna Sieć Neuronowa",
+        "Cyfrowa Normalizacja Cech"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Która z technik jest wykorzystywana do zwiększania rozdzielczości obrazów?",
+      "options": [
+        "Segmentacja",
+        "Aglomeracja",
+        "Interpolacja",
+        "Detekcja"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Co oznacza skrót ROI w kontekście widzenia komputerowego?",
+      "options": [
+        "Redukcja Ostrych Krawędzi",
+        "Rejon Obrazu Interpolowanego",
+        "Region Zainteresowania",
+        "Rozpoznawanie Obiektów i Ichrozpoznawanie"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Zadanie jakie spełnia algorytm RANSAC w widzeniu komputerowym?",
+      "options": [
+        "Segmentacja obrazu",
+        "Redukcja szumów",
+        "Aproksymacja danych",
+        "Rozpoznawanie twarzy"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Czym jest data augmentation w uczeniu maszynowym związanym z widzeniem komputerowym?",
+      "options": [
+        "Procesem zwiększania ilości neuronów w sieci neuronowej",
+        "Techniką zwiększania liczby próbek treningowych poprzez modyfikację obrazów",
+        "Metodą zwiększania liczby epok w procesie uczenia",
+        "Strategią redukcji wymiarowości danych wejściowych"
+      ],
+      "correct_option": 1
+    },
+    {
+      "question": "Co to jest mapa ciepła (heat map) w kontekście widzenia komputerowego?",
+      "options": [
+        "Mapa topograficzna obszarów o podwyższonej temperaturze",
+        "Mapa rozkładu kolorów na obrazie",
+        "Wizualizacja obszarów obrazu przyciągających uwagę",
+        "Mapa zniekształceń obrazu do celów analizy"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Który rodzaj sieci neuronowej jest często stosowany w generowaniu obrazów, np. twarzy, przy zachowaniu szczegółów?",
+      "options": [
+        "Autoenkoder",
+        "Sieć Kohonena",
+        "Perceptron wielowarstwowy",
+        "Maszyna Boltzmanna"
+      ],
+      "correct_option": 0
+    },
+    {
+      "question": "Czym jest problem wybuchającego gradientu w kontekście uczenia głębokich sieci neuronowych?",
+      "options": [
+        "Problemem związanym z wybuchającymi dźwiękami podczas uczenia",
+        "Zjawiskiem, w którym gradienty w procesie uczenia rosną zbyt szybko i prowadzą do niestabilności",
+        "Problemem ze zbyt szybkim uczeniem, które prowadzi do przetrenowania",
+        "Trudno jest zdefiniować ten problem w kontekście uczenia maszynowego"
+      ],
+      "correct_option": 1
+    },
+    {
+      "question": "Co to jest konwolucja w kontekście konwolucyjnych sieci neuronowych?",
+      "options": [
+        "Operacją matematyczną polegającą na mnożeniu macierzy",
+        "Procesem wyodrębniania cech z obrazu poprzez przesuwanie filtru",
+        "Techniką kompresji danych obrazowych",
+        "Rodzajem normalizacji danych wejściowych"
+      ],
+      "correct_option": 1
+    },
+    {
+      "question": "Która metoda jest stosowana w celu uniknięcia przeuczenia (overfittingu) w sieciach neuronowych?",
+      "options": [
+        "Zwiększanie rozmiaru warstw ukrytych",
+        "Zwiększanie liczby epok treningowych",
+        "Regularizacja, np. L1 lub L2",
+        "Zmniejszanie wielkości zbioru treningowego"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Do czego służy metoda non-maximum suppression w detekcji obiektów?",
+      "options": [
+        "Do eliminacji obiektów o niskiej jakości",
+        "Do wygładzania obrazu poprzez redukcję szumów",
+        "Do zwiększania rozdzielczości obrazów",
+        "Do redukcji ilości fałszywych pozytywów poprzez usuwanie niepotrzebnych detekcji"
+      ],
+      "correct_option": 3
+    },
+    {
+      "question": "Która metoda jest wykorzystywana do konwersji kolorowego obrazu na obraz w skali szarości?",
+      "options": [
+        "Konwersja RGB do CMYK",
+        "Konwersja RGB do HSV",
+        "Konwersja RGB do HSL",
+        "Uśrednianie kanałów RGB"
+      ],
+      "correct_option": 3
+    },
+    {
+      "question": "Czym jest sieć GAN w kontekście widzenia komputerowego?",
+      "options": [
+        "Siecią stosowaną w analizie spektralnej",
+        "Siecią do klasyfikacji tekstów",
+        "Generatywną Siecią Adwersarialną, używaną do generowania treści",
+        "Siecią z mechanizmem uwagi"
+      ],
+      "correct_option": 2
+    },
+    {
+      "question": "Co oznacza termin 'Transfer Learning' w kontekście widzenia komputerowego?",
+      "options": [
+        "Przenoszenie zdjęć z aparatu na komputer",
+        "Przenoszenie wiedzy z jednej dziedziny do innej",
+        "Wykorzystywanie wstępnie nauczonych modeli do rozwiązania nowych zadań",
+        "Przenoszenie wag neuronów między różnymi warstwami sieci neuronowej"
+      ],
+      "correct_option": 2
+    }
+  ]
+  

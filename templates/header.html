@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+<header>
+    <nav class="header__nav">
+        <ul>
+            <li><a href="/"  class="nav__link">Home</a></li>
+            <li><a href="{{ url_for('quiz')}}" class="nav__link">Quiz</a></li>
+            <li><a href="{{ url_for('register')}}" class="nav__link">Register</a></li>
+            <li><a href="{{ url_for('login')}}" class="nav__link">Login</a></li>
+            <li class="logged-as"></li>
+            <li><a onclick="f()" class="nav__link logout">Log out</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    if (localStorage.getItem("username")) {
+        register = document.getElementsByClassName("nav__link")[2]
+        login = document.getElementsByClassName("nav__link")[3]
+        register.remove()
+        login.remove()
+        loggedAs = document.getElementsByClassName("logged-as")[0]
+        let text = document.createTextNode("Logged in as: " + localStorage.getItem("username"));
+        loggedAs.appendChild(text);
+    }
+    else {
+        logout = document.getElementsByClassName("logout")[0]
+        logout.remove()
+    }
+    function f() {
+        localStorage.removeItem("username");
+        localStorage.removeItem("token");
+        location.reload()
+    }
+</script>

@@ -41,7 +41,7 @@
     }
     else {
       app_url = window.location.href.split('/')[2]
-      api_url =  `http://${app_url}/api/register`
+      api_url =  `https://${app_url}/api/register`
       console.log(api_url)
       const response = await fetch(api_url, {
         method: "POST",
@@ -60,7 +60,7 @@
         alert(response_json["error"])
       }
       else {
-        window.location.replace(`http://${app_url}/login`)
+        window.location.replace(`https://${app_url}/login`)
       }
     }
   }

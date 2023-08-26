@@ -28,7 +28,7 @@ city.addEventListener('keypress', function (e) {
     }
 });
 async function getTemp(city) {
-    const api_url =  `http://${app_url}/api/weather?city=${city}`
+    const api_url =  `https://${app_url}/api/weather?city=${city}`
     const response_get = await fetch(api_url, {
       method: "GET"
       });

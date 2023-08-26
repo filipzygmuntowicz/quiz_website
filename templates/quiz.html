@@ -30,7 +30,7 @@
   <button class="reset-quiz" onclick="resetQuiz()">Try again</button>
 <script>
   const app_url = window.location.href.split('/')[2]
-  const api_url =  `http://${app_url}/api/quiz`
+  const api_url =  `https://${app_url}/api/quiz`
   window.onload = ( async () => {
     const response = await fetch(api_url, {
       method: "GET",
@@ -118,7 +118,7 @@
     }
   }
   async function resetQuiz() {
-    const api_url =  `http://${app_url}/api/reset_quiz`
+    const api_url =  `https://${app_url}/api/reset_quiz`
     const response_post = await fetch(api_url, {
         method: "POST",
         headers: {
@@ -132,7 +132,7 @@
       alert(response_post_json.error)
     }
     else {
-      window.location.replace(`http://${app_url}/quiz`)
+      window.location.replace(`https://${app_url}/quiz`)
     }
   }
 </script>

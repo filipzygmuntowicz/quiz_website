@@ -1,5 +1,6 @@
 from setup import app
 from flask import render_template
+from db_model import User
 
 
 @app.route("/")
@@ -24,4 +25,12 @@ def quiz():
 
 @app.route("/scores")
 def scores():
-    return render_template('scores.html')
+    users = User.query.all()
+    scores = []
+    for user in users:
+        scores.append({
+                "username": user.username,
+                "score": user.high_score
+            })
+    scores = sorted(scores, key=lambda x: x["score"], reverse=True)
+    return render_template('scores.html', scores=scores)

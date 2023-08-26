@@ -68,10 +68,10 @@ def register_user(email, username, password, repassword):
                 gensalt(14)).decode("utf-8")
             user_uuid = uuid4()
             user_uuid = str(user_uuid)
-            new_user = User(user_uuid, username, email, password, "[]", 0, 0)
+            new_user = User(
+                user_uuid, username, email, password, "[]", 0, 0, 0)
             db.session.add(new_user)
             db.session.commit()
-            #new_user_id = new_user.user_id
             response = Response(
                 json.dumps({"success": "Successfully created account."}),
                 status=201, mimetype='application/json')

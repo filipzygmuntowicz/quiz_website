@@ -9,7 +9,7 @@
 <body>
   {% include "header.html" %}
   <a href="{{ url_for('scores')}}">
-    <button class="score-table">Tabela wyników</button>
+    <button class="score-table">High Scores</button>
   </a>
   <div class="score-container">
       <p class="score">Score: 0</p>
@@ -27,9 +27,10 @@
     </div>
   </div>
   <p class="no-questions-left">You have answered all of the questions!</p>
+  <button class="reset-quiz" onclick="resetQuiz()">Try again</button>
 <script>
-const app_url = window.location.href.split('/')[2]
-  const api_url =  "http://" + app_url + "/api/quiz"
+  const app_url = window.location.href.split('/')[2]
+  const api_url =  `http://${app_url}/api/quiz`
   window.onload = ( async () => {
     const response = await fetch(api_url, {
       method: "GET",
@@ -40,11 +41,11 @@ const app_url = window.location.href.split('/')[2]
     const response_get_json = await response.json()
     score = document.getElementsByClassName("score")[0]
     score.innerText = `Score: ${response_get_json.score}`
-    console.log(score)
     if (response_get_json["error"] == "No questions left.") {
       container = document.getElementsByClassName("quiz-container")[0]
       container.remove()
       document.getElementsByClassName("no-questions-left")[0].style.display = 'block';
+      document.getElementsByClassName("reset-quiz")[0].style.display = 'block';
     }
     else if (response.status == 200) {
       question = document.getElementsByClassName("question")[0]
@@ -60,61 +61,80 @@ const app_url = window.location.href.split('/')[2]
     else {
       alert(response_get_json["error"])
     }})
-    async function getQuestion() {
-      if (localStorage.getItem("token")) {
-        optionChosen = document.querySelector('input[name="q"]:checked')
-        if (optionChosen != null) {
-          const response_post = await fetch(api_url, {
-            method: "POST",
-            body: JSON.stringify({
-              chosen: optionChosen.value
-              }),
-            headers: {
-              "Authorization": `Bearer ${localStorage.getItem("token")}`,
-              "Content-type": "application/json; charset=UTF-8"
+  async function getQuestion() {
+    if (localStorage.getItem("token")) {
+      optionChosen = document.querySelector('input[name="q"]:checked')
+      if (optionChosen != null) {
+        const response_post = await fetch(api_url, {
+          method: "POST",
+          body: JSON.stringify({
+            chosen: optionChosen.value
+            }),
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        });
+        const response_post_json = await response_post.json()
+        if (response_post.status != 200) {
+          alert(response_post_json["error"])
+        }
+        const response_get = await fetch(api_url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
             }
           });
-          const response_post_json = await response_post.json()
-          if (response_post.status != 200) {
-            alert(response_post_json["error"])
-          }
-          const response_get = await fetch(api_url, {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`
-              }
-            });
-          const response_get_json = await response_get.json()
-          score = document.getElementsByClassName("score")[0]
-          score.innerText = `Score: ${response_get_json.score}`
-          if (response_get_json["error"] == "No questions left.") {
-            container = document.getElementsByClassName("quiz-container")[0]
-            container.remove()
-            document.getElementsByClassName("no-questions-left")[0].style.display = 'block';
-          }
-          else if (response_get.status == 200) {
-            question = document.getElementsByClassName("question")[0]
-            answers = [...document.getElementsByClassName("answer")]
-            const jsonQuestion = response_get_json.question
-            answers.forEach((answer,index) => {
-              answer.innerHTML = `<input type="radio" name="q" value="${jsonQuestion.options[index]}">${jsonQuestion.options[index]}`
-            })
-            question.innerHTML = ""
-            text = document.createTextNode(jsonQuestion.question);
-            question.appendChild(text);
-          }
-          else {
-            alert(response_get_json["error"])
-          }
+        const response_get_json = await response_get.json()
+        score = document.getElementsByClassName("score")[0]
+        score.innerText = `Score: ${response_get_json.score}`
+        if (response_get_json["error"] == "No questions left.") {
+          container = document.getElementsByClassName("quiz-container")[0]
+          container.remove()
+          document.getElementsByClassName("no-questions-left")[0].style.display = 'block';
+          document.getElementsByClassName("reset-quiz")[0].style.display = 'block';
+        }
+        else if (response_get.status == 200) {
+          question = document.getElementsByClassName("question")[0]
+          answers = [...document.getElementsByClassName("answer")]
+          const jsonQuestion = response_get_json.question
+          answers.forEach((answer,index) => {
+            answer.innerHTML = `<input type="radio" name="q" value="${jsonQuestion.options[index]}">${jsonQuestion.options[index]}`
+          })
+          question.innerHTML = ""
+          text = document.createTextNode(jsonQuestion.question);
+          question.appendChild(text);
         }
         else {
-          alert("You need to select one of the qestions.")
+          alert(response_get_json["error"])
         }
       }
       else {
-        alert("You need to log in first.")
+        alert("You need to select one of the qestions.")
       }
     }
+    else {
+      alert("You need to log in first.")
+    }
+  }
+  async function resetQuiz() {
+    const api_url =  `http://${app_url}/api/reset_quiz`
+    const response_post = await fetch(api_url, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          "Content-type": "application/json; charset=UTF-8"
+        }
+        });
+    
+    if (response_post.status != "200") {
+      const response_post_json = await response_post.json()
+      alert(response_post_json.error)
+    }
+    else {
+      window.location.replace(`http://${app_url}/quiz`)
+    }
+  }
 </script>
 </body>
 </html>

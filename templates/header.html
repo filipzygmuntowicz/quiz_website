@@ -7,28 +7,31 @@
             <li><a href="{{ url_for('register')}}" class="nav__link">Register</a></li>
             <li><a href="{{ url_for('login')}}" class="nav__link">Login</a></li>
             <li class="logged-as"></li>
-            <li><a onclick="f()" class="nav__link logout">Log out</a></li>
+            <li><a onclick="logOut()" class="nav__link logout">Log out</a></li>
         </ul>
     </nav>
 </header>
 
 <script>
-    if (localStorage.getItem("username")) {
+    if (localStorage.getItem("username")) {  
         register = document.getElementsByClassName("nav__link")[2]
         login = document.getElementsByClassName("nav__link")[3]
         register.remove()
         login.remove()
         loggedAs = document.getElementsByClassName("logged-as")[0]
-        let text = document.createTextNode("Logged in as: " + localStorage.getItem("username"));
+        let text = document.createTextNode(`Logged in as: ${localStorage.getItem("username")}`);
         loggedAs.appendChild(text);
     }
     else {
+        quiz = document.getElementsByClassName("nav__link")[1]
         logout = document.getElementsByClassName("logout")[0]
         logout.remove()
+        quiz.remove()
     }
-    function f() {
+    function logOut() {
         localStorage.removeItem("username");
         localStorage.removeItem("token");
-        location.reload()
+        const app_url = window.location.href.split('/')[2]
+        window.location.replace(`http://${app_url}/`)
     }
 </script>

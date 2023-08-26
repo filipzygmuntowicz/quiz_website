@@ -10,16 +10,43 @@
 <body>
     {% include "header.html" %}
     <div class="container">
-        <label><input type="text" name="q1"></label>
+        <p class="paragraph-weather">Weather data table</p>
+        <label><input id="city" type="text" name="q1" placeholder="City name"></label>
         <div class="forecast">
-            <p>Jutro: 30 stopni</p>
-            <p>26.08.2023: 30 stopni</p>
-            <p>27.08.2023: 30 stopni</p>
+            <h1></h1>
+            <p class="day-data"></p>
+            <p class="day-data"></p>
+            <p class="day-data"></p>
         </div>
     </div>
 </body>
 </html>
 
 <script>
-  
+const app_url = window.location.href.split('/')[2]
+
+
+city.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        city = document.getElementById("city")
+        getTemp(city.value)
+    }
+});
+async function getTemp(city) {
+    const api_url =  `http://${app_url}/api/weather?city=${city}`
+    const response_get = await fetch(api_url, {
+      method: "GET"
+      });
+    const response_get_json = await response_get.json()
+    if (response_get.status == "200") {
+        days = [...document.getElementsByClassName("day-data")]
+        days.forEach((day, index) => {
+            dayData = response_get_json[index]
+            day.innerText = `${dayData.date}, ${dayData.weekday}, day temperature: ${dayData.day_temp}, night temperature: ${dayData.night_temp}`
+        })
+    }
+    else {
+        alert(response_get_json.error)
+    }
+    }
 </script>

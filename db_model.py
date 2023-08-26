@@ -15,10 +15,11 @@ class User(db.Model):
     answered_questions = db.Column(db.String)
     last_generated_question = db.Column(db.Integer)
     score = db.Column(db.Integer)
+    high_score = db.Column(db.Integer)
 
     def __init__(
         self, uuid, username, email, password, answered_questions,
-        last_generated_question, score
+        last_generated_question, score, high_score
     ):
         self.uuid = uuid
         self.username = username
@@ -29,3 +30,4 @@ class User(db.Model):
         self.answered_questions = answered_questions
         self.last_generated_question = last_generated_question
         self.score = score
+        self.high_score = high_score

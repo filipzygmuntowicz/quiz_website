@@ -150,11 +150,27 @@ class Weather_Data(Resource):
             return response
         lat = data["lat"]
         lon = data["lon"]
+        weather_data = []
+        response = requests.get(
+            f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=metric&appid={api_key}"
+        )
+        data = response.json()["main"]
+        night_temp = data["temp_min"]
+        day_temp = data["temp_max"]
+        date = datetime.today()
+        weekday = date.weekday()
+        date = date.strftime("%Y-%m-%d")
+        weather_data.append(
+            {
+                "date": date,
+                "day_temp": day_temp,
+                "night_temp": night_temp,
+                "weekday": weekdays[weekday]
+            })
         response = requests.get(
             f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&units=metric&appid={api_key}")
         data = response.json()["list"]
-        weather_data = []
-        for i in range(3):
+        for i in range(2):
             day_index = i*8 + 3
             night_index = i*8 + 7
             day_temp = data[day_index]["main"]["temp"]
@@ -183,10 +199,5 @@ api.add_resource(Reset_Quiz, "/api/reset_quiz")
 api.add_resource(Weather_Data, "/api/weather")
 
 
-#with app.app_context():
-#    User.__table__.drop(db.engine)
-#    db.create_all()
-
 if __name__ == '__main__':
-
-    app.run(debug=True)
+    app.run()

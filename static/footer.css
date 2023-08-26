@@ -1,0 +1,19 @@
+.footer-container {
+    position:fixed;
+    height:10%;
+    width: 100%;
+    left:0%;
+    top: 98%;
+    background-color: black;
+    color: black;
+}
+.footer-text {
+    position:fixed;
+    font-weight: bold;
+    left: 85%;
+    color:white;
+    text-decoration: none;
+}
+a:hover {
+    color: #0056b3;
+  }

@@ -19,13 +19,8 @@
             <p class="day-data"></p>
         </div>
     </div>
-</body>
-</html>
-
 <script>
 const app_url = window.location.href.split('/')[2]
-
-
 city.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         city = document.getElementById("city")
@@ -50,3 +45,7 @@ async function getTemp(city) {
     }
     }
 </script>
+{% include "footer.html" %}
+</body>
+</html>
+
